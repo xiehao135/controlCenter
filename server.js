@@ -4,40 +4,41 @@ const Light = require('./models/light')
 const app = express()
 
 app.get('/',(req,res)=>{
-    mongoose.connect('mongodb+srv://dbUser:dbUserPassword@lightingsolution.xzdrm.mongodb.net/lightingSystem?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})
+//     mongoose.connect('mongodb+srv://dbUser:dbUserPassword@lightingsolution.xzdrm.mongodb.net/lightingSystem?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})
 
-    const allLight = Light
+//     const allLight = Light
 
-    var lightArray = allLight.find({},(err,docs)=>{
-        if(err) {
-            console.log(err.message)
-        }else{
-            console.log(docs)
-            mongoose.connection.close()
-        }
-    });
-    var allLights = []
-    lightArray.exec(function(err,lights){
-        if(err)
-            return console.log(err);
-        lights.forEach(function(light){
-            var elem = new Object();
-            elem['id'] = light.id;
-            elem['floor'] = light.floor;
-            elem['area'] = light.area;
-            elem['status'] = light.status;
+//     var lightArray = allLight.find({},(err,docs)=>{
+//         if(err) {
+//             console.log(err.message)
+//         }else{
+//             console.log(docs)
+//             mongoose.connection.close()
+//         }
+//     });
+//     var allLights = []
+//     lightArray.exec(function(err,lights){
+//         if(err)
+//             return console.log(err);
+//         lights.forEach(function(light){
+//             var elem = new Object();
+//             elem['id'] = light.id;
+//             elem['floor'] = light.floor;
+//             elem['area'] = light.area;
+//             elem['status'] = light.status;
 
-            allLights.push(elem)
-            console.log(allLights)
-        });
+//             allLights.push(elem)
+//             console.log(allLights)
+//         });
 
-        var html = ''
-        for(var i=0 ; i< allLights.length; i++){
-            html += '<p>' + 'Id:' + allLights[i].id +';' + 'Status:' +allLights[i].status + '</p>'
-        }
+//         var html = ''
+//         for(var i=0 ; i< allLights.length; i++){
+//             html += '<p>' + 'Id:' + allLights[i].id +';' + 'Status:' +allLights[i].status + '</p>'
+//         }
         
-        res.send(html)
-    })
+//         res.send(html)
+//     })
+     res.send('Hello')
 })
 
 var port = process.env.PORT
