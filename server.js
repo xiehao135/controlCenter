@@ -4,11 +4,18 @@ const Light = require('./models/light')
 const app = express()
 
 app.get('/',(req,res)=>{
-    mongoose.connect('mongodb+srv://dbUser:dbUserPassword@lightingsolution.xzdrm.mongodb.net/lightSystem?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://dbUser:dbUserPassword@lightingsolution.xzdrm.mongodb.net/lightingSystem?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})
 
     const allLight = Light
 
-    var lightArray = allLight.find();
+    var lightArray = allLight.find({},(err,docs)=>{
+        if(err) {
+            console.log(err.message)
+        }else{
+            console.log(docs)
+            mongoose.connection.close()
+        }
+    });
     var allLights = []
     lightArray.exec(function(err,lights){
         if(err)
